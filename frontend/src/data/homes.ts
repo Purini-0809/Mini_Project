@@ -1,0 +1,224 @@
+export interface HomeItem {
+  id: string;
+  name: string;
+  price: number;
+  location: string;
+  yearBuilt: number;
+  sqft: number;
+  image: string;
+  description: string;
+  bedrooms: number;
+  bathrooms: number;
+  propertyType: 'single-family' | 'condo' | 'townhouse' | 'multi-family' | 'traditional';
+  condition: 'excellent' | 'good' | 'fair' | 'poor';
+  vastuScore: number; // 1-10 scale
+  vastuFeatures: string[];
+  estimatedPrice?: number;
+  parking: boolean;
+  gardenArea: boolean;
+  gardenSize?: number; // in sqft
+  parkingSpaces?: number;
+}
+
+export const homes: HomeItem[] = [
+  {
+    id: "h1",
+    name: "Oakridge Villa",
+    price: 9500000,
+    location: "Hyderabad, Telangana",
+    yearBuilt: 2018,
+    sqft: 2400,
+    image: "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1200&auto=format&fit=crop",
+    description: "Modern villa with open floor plan and premium finishes.",
+    bedrooms: 4,
+    bathrooms: 3,
+    propertyType: 'single-family',
+    condition: 'excellent',
+    vastuScore: 8,
+    vastuFeatures: ['North-facing entrance', 'Proper ventilation', 'Balanced rooms'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 800,
+    parkingSpaces: 2
+  },
+  {
+    id: "h2",
+    name: "Lakeside Residency",
+    price: 7500000,
+    location: "Bengaluru, Karnataka",
+    yearBuilt: 2015,
+    sqft: 1800,
+    image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop",
+    description: "Cozy home near the lake with scenic views.",
+    bedrooms: 3,
+    bathrooms: 2,
+    propertyType: 'single-family',
+    condition: 'good',
+    vastuScore: 7,
+    vastuFeatures: ['East-facing kitchen', 'Natural light', 'Water body proximity'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 600,
+    parkingSpaces: 1
+  },
+  {
+    id: "h3",
+    name: "Palm Grove House",
+    price: 12000000,
+    location: "Pune, Maharashtra",
+    yearBuilt: 2021,
+    sqft: 2800,
+    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop",
+    description: "Spacious house with garden and smart home features.",
+    bedrooms: 5,
+    bathrooms: 4,
+    propertyType: 'single-family',
+    condition: 'excellent',
+    vastuScore: 9,
+    vastuFeatures: ['Perfect square plot', 'Northeast corner garden', 'Vastu-compliant layout'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 1200,
+    parkingSpaces: 3
+  },
+  {
+    id: "h4",
+    name: "Sunset Heights",
+    price: 6800000,
+    location: "Chennai, Tamil Nadu",
+    yearBuilt: 2012,
+    sqft: 1500,
+    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop",
+    description: "Compact family home in a well-connected neighborhood.",
+    bedrooms: 2,
+    bathrooms: 2,
+    propertyType: 'condo',
+    condition: 'fair',
+    vastuScore: 6,
+    vastuFeatures: ['South-facing living room', 'Proper drainage'],
+    parking: true,
+    gardenArea: false,
+    parkingSpaces: 1
+  },
+  {
+    id: "h5",
+    name: "Maple Courtyard",
+    price: 10200000,
+    location: "Noida, Uttar Pradesh",
+    yearBuilt: 2019,
+    sqft: 2200,
+    image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop",
+    description: "Contemporary design with courtyard and skylights.",
+    bedrooms: 4,
+    bathrooms: 3,
+    propertyType: 'single-family',
+    condition: 'excellent',
+    vastuScore: 8,
+    vastuFeatures: ['Central courtyard', 'North-east water feature', 'Balanced energy flow'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 900,
+    parkingSpaces: 2
+  },
+  {
+    id: "h6",
+    name: "Cedar Park Home",
+    price: 8400000,
+    location: "Ahmedabad, Gujarat",
+    yearBuilt: 2016,
+    sqft: 2000,
+    image: "https://images.unsplash.com/photo-1502005097973-6a7082348e28?q=80&w=1200&auto=format&fit=crop",
+    description: "Well-maintained home with energy-efficient upgrades.",
+    bedrooms: 3,
+    bathrooms: 2,
+    propertyType: 'single-family',
+    condition: 'good',
+    vastuScore: 7,
+    vastuFeatures: ['East-facing entrance', 'Proper room placement', 'Good ventilation'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 700,
+    parkingSpaces: 2
+  },
+  // Kerala Traditional Homes
+  {
+    id: "k1",
+    name: "Nalukettu Heritage",
+    price: 15000000,
+    location: "Kochi, Kerala",
+    yearBuilt: 1995,
+    sqft: 3200,
+    image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1200&auto=format&fit=crop",
+    description: "Traditional Kerala Nalukettu house with courtyard and wooden architecture.",
+    bedrooms: 6,
+    bathrooms: 4,
+    propertyType: 'traditional',
+    condition: 'excellent',
+    vastuScore: 10,
+    vastuFeatures: ['Perfect Nalukettu design', 'Central courtyard', 'Traditional wooden pillars', 'Natural ventilation', 'Sacred geometry'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 2000,
+    parkingSpaces: 4
+  },
+  {
+    id: "k2",
+    name: "Tharavadu Villa",
+    price: 12500000,
+    location: "Thiruvananthapuram, Kerala",
+    yearBuilt: 2005,
+    sqft: 2800,
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1200&auto=format&fit=crop",
+    description: "Modern interpretation of traditional Kerala architecture with contemporary amenities.",
+    bedrooms: 5,
+    bathrooms: 3,
+    propertyType: 'traditional',
+    condition: 'excellent',
+    vastuScore: 9,
+    vastuFeatures: ['Traditional sloping roof', 'Courtyard design', 'Wooden carvings', 'Natural materials', 'Vastu-compliant layout'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 1500,
+    parkingSpaces: 3
+  },
+  {
+    id: "k3",
+    name: "Backwater Bungalow",
+    price: 18000000,
+    location: "Alleppey, Kerala",
+    yearBuilt: 2010,
+    sqft: 2500,
+    image: "https://images.unsplash.com/photo-1544984243-ec57ea16fe25?q=80&w=1200&auto=format&fit=crop",
+    description: "Luxury traditional home overlooking Kerala backwaters with modern comforts.",
+    bedrooms: 4,
+    bathrooms: 4,
+    propertyType: 'traditional',
+    condition: 'excellent',
+    vastuScore: 9,
+    vastuFeatures: ['Backwater view', 'Traditional architecture', 'Modern amenities', 'Vastu principles', 'Natural surroundings'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 1800,
+    parkingSpaces: 3
+  },
+  {
+    id: "k4",
+    name: "Spice Garden House",
+    price: 9500000,
+    location: "Munnar, Kerala",
+    yearBuilt: 2008,
+    sqft: 2000,
+    image: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=1200&auto=format&fit=crop",
+    description: "Cozy traditional home surrounded by spice gardens in the hills.",
+    bedrooms: 3,
+    bathrooms: 2,
+    propertyType: 'traditional',
+    condition: 'good',
+    vastuScore: 8,
+    vastuFeatures: ['Hill station location', 'Traditional design', 'Spice garden', 'Natural ventilation', 'Peaceful environment'],
+    parking: true,
+    gardenArea: true,
+    gardenSize: 3000,
+    parkingSpaces: 2
+  }
+];
