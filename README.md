@@ -105,7 +105,6 @@ Smart-Home-Valuation/
 
 
 🧩 Future Enhancements
-
 Add location-based recommendation system.
 
 Enable image uploads for property evaluation.
@@ -113,3 +112,4 @@ Enable image uploads for property evaluation.
 Add 3D/AR view of properties.
 
 Integrate Google Maps API for distance-based pricing.
+
