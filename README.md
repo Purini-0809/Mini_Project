@@ -82,6 +82,7 @@ Make sure you have installed:
    git clone https://github.com/<your-username>/Smart-Home-Valuation.git
    cd Smart-Home-Valuation
 Project Structure
+
 Smart-Home-Valuation/
 │
 ├── frontend/
