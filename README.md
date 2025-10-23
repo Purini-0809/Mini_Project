@@ -102,6 +102,8 @@ Smart-Home-Valuation/
 │
 ├── README.md
 └── LICENSE
+
+
 🧩 Future Enhancements
 
 Add location-based recommendation system.
