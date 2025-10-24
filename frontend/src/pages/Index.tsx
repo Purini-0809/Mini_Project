@@ -6,7 +6,18 @@ import { Features } from "@/components/Features";
 import { PenkutiIllulu } from "@/components/PenkutiIllulu";
 import { Helmet } from "react-helmet";
 import { toast } from "sonner";
-import { api, type PropertyData, type ValuationResult as ValuationResultType } from "@/services/api";
+
+interface ValuationResultType {
+  estimatedPrice: number;
+  confidence: number;
+  priceRange: {
+    low: number;
+    high: number;
+  };
+  marketTrend: "up" | "stable" | "down";
+  dataCompleteness: number;
+  calculatedAt: string;
+}
 
 interface FormPropertyData {
   address: string;
@@ -31,17 +42,96 @@ const Index = () => {
     setIsLoading(true);
     
     try {
-      console.log('Sending valuation request:', data);
+      console.log('Calculating valuation for:', data);
       
-      const result = await api.estimateProperty({
-        address: data.address,
-        bedrooms: parseInt(data.bedrooms),
-        bathrooms: parseFloat(data.bathrooms),
-        sqft: parseInt(data.sqft),
-        yearBuilt: data.yearBuilt ? parseInt(data.yearBuilt) : undefined,
-        propertyType: data.propertyType || undefined,
-        condition: data.condition || undefined,
-      });
+      // Client-side property estimation algorithm
+      const baseRates: Record<string, number> = {
+        'single-family': 280,
+        'condo': 240,
+        'townhouse': 260,
+        'multi-family': 220,
+        'traditional': 350,
+      };
+
+      const baseRate = data.propertyType ? 
+        (baseRates[data.propertyType] || 250) : 250;
+
+      // Calculate base price
+      let estimatedPrice = parseInt(data.sqft) * baseRate;
+
+      // Bedroom premium
+      const bedroomValue = parseInt(data.bedrooms) * 18000;
+      estimatedPrice += bedroomValue;
+
+      // Bathroom premium
+      const bathroomValue = parseFloat(data.bathrooms) * 12000;
+      estimatedPrice += bathroomValue;
+
+      // Age adjustment
+      if (data.yearBuilt) {
+        const age = new Date().getFullYear() - parseInt(data.yearBuilt);
+        if (age < 5) {
+          estimatedPrice *= 1.15; // New construction premium
+        } else if (age < 15) {
+          estimatedPrice *= 1.05; // Modern premium
+        } else if (age > 40) {
+          estimatedPrice *= 0.92; // Age discount
+        }
+      }
+
+      // Condition adjustment
+      const conditionMultipliers: Record<string, number> = {
+        'excellent': 1.12,
+        'good': 1.0,
+        'fair': 0.92,
+        'poor': 0.80,
+      };
+
+      if (data.condition && conditionMultipliers[data.condition]) {
+        estimatedPrice *= conditionMultipliers[data.condition];
+      }
+
+      // Location premium (simplified)
+      const locationMultipliers: Record<string, number> = {
+        'Mumbai': 1.8,
+        'Delhi': 1.6,
+        'Bangalore': 1.4,
+        'Hyderabad': 1.3,
+        'Pune': 1.2,
+        'Chennai': 1.1,
+        'Kolkata': 1.0,
+      };
+
+      const location = data.address.split(',')[0].trim();
+      if (locationMultipliers[location]) {
+        estimatedPrice *= locationMultipliers[location];
+      }
+
+      // Calculate confidence score
+      let dataPoints = 0;
+      let totalPossiblePoints = 7;
+      
+      if (data.address) dataPoints++;
+      if (data.bedrooms) dataPoints++;
+      if (data.bathrooms) dataPoints++;
+      if (data.sqft) dataPoints++;
+      if (data.yearBuilt) dataPoints++;
+      if (data.propertyType) dataPoints++;
+      if (data.condition) dataPoints++;
+
+      const confidence = Math.round((dataPoints / totalPossiblePoints) * 100);
+
+      const result: ValuationResultType = {
+        estimatedPrice: Math.round(estimatedPrice),
+        confidence,
+        priceRange: {
+          low: Math.round(estimatedPrice * 0.85),
+          high: Math.round(estimatedPrice * 1.15)
+        },
+        marketTrend: "stable",
+        dataCompleteness: confidence,
+        calculatedAt: new Date().toISOString()
+      };
 
       console.log('Valuation result:', result);
       setValuation(result);
