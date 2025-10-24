@@ -9,7 +9,6 @@ import NotFound from "./pages/NotFound";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import EMIPage from "./pages/EMI";
 import { NavBar } from "@/components/NavBar";
-import HomesPage from "./pages/Homes";
 import ComparePage from "./pages/Compare";
 import { CompareProvider } from "@/context/CompareContext";
 import { AIChat } from "@/components/AIChat";
@@ -28,7 +27,6 @@ const App = () => (
             <NavBar />
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/homes" element={<HomesPage />} />
               <Route path="/compare" element={<ComparePage />} />
               <Route path="/emi" element={<EMIPage />} />
               <Route path="/auth" element={<Auth />} />

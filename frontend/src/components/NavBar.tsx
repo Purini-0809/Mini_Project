@@ -20,7 +20,6 @@ export const NavBar = () => {
         <nav className="flex items-center gap-2">
           <LinkItem to="/auth" label="Login" />
           <LinkItem to="/" label="Home" />
-          <LinkItem to="/homes" label="Homes" />
           <LinkItem to="/compare" label="Compare" />
           <LinkItem to="/emi" label="EMI" />
         </nav>
