@@ -18,11 +18,11 @@ export const NavBar = () => {
       <div className="container mx-auto px-4 h-14 flex items-center justify-between">
         <Link to="/" className="font-bold">Smart Home Valuation</Link>
         <nav className="flex items-center gap-2">
+          <LinkItem to="/auth" label="Login" />
           <LinkItem to="/" label="Home" />
           <LinkItem to="/homes" label="Homes" />
           <LinkItem to="/compare" label="Compare" />
           <LinkItem to="/emi" label="EMI" />
-          <LinkItem to="/auth" label="Login" />
         </nav>
       </div>
     </div>
