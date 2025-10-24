@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [react()],
+  base: './',
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -19,4 +20,7 @@ export default defineConfig(({ mode }) => ({
   optimizeDeps: {
     include: ["react", "react-dom", "framer-motion"],
   },
-}));
+  build: {
+    chunkSizeWarningLimit: 1000, // increases limit to 1MB
+  }
+  }));
